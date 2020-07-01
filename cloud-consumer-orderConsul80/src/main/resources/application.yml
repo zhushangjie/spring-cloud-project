@@ -1,0 +1,15 @@
+server:
+  port: 80
+
+spring:
+  application:
+    name: cloud-consumer-orderconsul
+
+  cloud:
+    consul:
+      #注册进服务的地址
+      host: localhost
+      port: 8500
+      #服务名称
+      discovery:
+        service-name: ${spring.application.name}

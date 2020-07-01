@@ -1,0 +1,32 @@
+server:
+  port: 3355
+
+spring:
+  application:
+    name: cloud-config-client
+  cloud:
+    #config客户端配置
+    config:
+      label: master #分之名字
+      name: config #配置文件名称
+      profile: dev #读取后缀名称
+      uri: http://localhost:3344 #配置中心地址   说白了，就是将以上的四个配置信息凭借为一个完整的url：http://localhost:3344/master/config-dev.yml
+#rabbitmq的相关配置 15762是web管理界面的端口， 5762是MQ访问的端口
+rabbitmq:
+  host: localhost
+  port: 5672
+  username: guest
+  password: guest
+
+#服务注册到eureka地址
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka
+
+##rabbitmq相关配置，暴露bus刷新配置的端点
+management:
+  endpoints: ##暴露bus刷新配置的端点
+    web:
+      exposure:
+        include: "*"  #refresh
